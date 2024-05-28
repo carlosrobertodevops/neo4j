@@ -50,18 +50,14 @@ MERGE (cidade:Cidade
     }
 )
 
-WITH faccionado,faccao,bairro,cidade
-MATCH(order{faccaoNome:order.faccaoNome})
+WITH faccionado, faccao, bairro, cidade
 MATCH(faccionado{faccionadoFaccao:faccionado.faccionadoFaccao})
 MATCH(faccionado{faccionadoBairroAtual:faccionado.faccionadoBairroAtual})
 MATCH(faccionado{faccionadoCidadeAtual:faccionado.faccionadoCidadeAtual})
-MATCH(faccao{faccaoName:faccao.faccaoName })
-MATCH(bairro{bairroName:bairro.bairroName })
-MATCH(cidade{cidadeName:cidade.cidadeName })
-
-WHERE faccao.faccaoName = faccionado.faccionadoFaccao
-    AND bairro.bairroName = faccionado.faccionadoBairroAtual
-    AND cidade.cidadeName = faccionado.faccionadoCidadeAtual
+MATCH(faccao{faccaoName:faccao.faccaoName})
+MATCH(bairro{bairroName:bairro.bairroName})
+MATCH(cidade{cidadeName:cidade.cidadeName})
+WHERE faccao.faccaoName = faccionado.faccionadoFaccao AND bairro.bairroName = faccionado.faccionadoBairroAtual AND cidade.cidadeName = faccionado.faccionadoCidadeAtual
 MERGE (bairro)<-[:`DO BAIRRO`]-(faccionado)-[:`DA FACÇÃO`]->(faccao)
 MERGE (cidade)<-[:`DA CIDADE`]-(faccionado)
 

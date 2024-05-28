@@ -23,6 +23,3 @@ WHERE order.shipperID = shipper.shipperID AND order.customerID = customer.custom
 MERGE (shipper)-[:DELIVERED]->(order)<-[:PLACED]-(customer)
 MERGE (employee)-[:FULFILLED]->(order)
 RETURN *
-
-
-
