@@ -1,6 +1,6 @@
 // RELACIONAMENTOS DOS FACCIONADOS
 // ================================
-// faccionados x faccoes
+// faccionados x faccoes (*)
 // faccionados x bairros
 // fafaccionadosc x cidades
 // faccionados x idade
@@ -21,7 +21,7 @@ MERGE(faccionado:Faccionado
 
 WITH faccionado
 LOAD CSV WITH HEADERS FROM "file:///faccionados_neo4j_00.csv" AS row
-MERGE (faccao:Faccoe
+MERGE (faccao:Faccao
     {
         faccaoID:COALESCE(row.faccao,"SEM NOME"),
         faccaoName:COALESCE(row.faccao,"SEM NOME"),
@@ -40,12 +40,13 @@ MERGE (bairro:Bairro
 )
 
 WITH faccionado,faccao,bairro
-MATCH(faccionado{faccionadoID:faccionado.faccionadoID})
+MATCH(order{faccaoID:order.faccaoID})
 MATCH(faccionado{faccionadoFaccao:faccionado.faccionadoFaccao})
-MATCH(faccionado{faccionadoBairroAtual:faccionado.faccionadoID})
-MATCH(faccao{faccaoID:faccao.faccaoID })
-MATCH(bairro{bairroID:bairro.bairroID })
-WHERE faccao.faccaoID = faccionado.faccionadoFaccao AND bairro.bairroID = faccionado.faccionadoBairroAtual
+MATCH(faccionado{faccionadoBairroAtual:faccionado.faccionadoBairroAtual})
+MATCH(faccao{faccaoName:faccao.faccaoName })
+MATCH(bairro{bairroName:bairro.bairroName })
+WHERE faccao.faccaoName = faccionado.faccionadoFaccao 
+    AND bairro.bairroName = faccionado.faccionadoBairroAtual
 MERGE (bairro)<-[:`DO BAIRRO`]-(faccionado)-[:`DA FACÇÃO`]->(faccao)
 
 RETURN *
