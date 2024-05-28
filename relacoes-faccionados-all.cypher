@@ -1,8 +1,8 @@
 // RELACIONAMENTOS DOS FACCIONADOS
 // ================================
 // faccionados x faccoes (*)
-// faccionados x bairros
-// fafaccionadosc x cidades
+// faccionados x bairros (*)
+// fafaccionadosc x cidades (*)
 // faccionados x idade
 // faccionadosac x homicidas
 // faccionadosac x estupradores
@@ -62,5 +62,6 @@ WHERE faccao.faccaoName = faccionado.faccionadoFaccao
     AND bairro.bairroName = faccionado.faccionadoBairroAtual
     AND cidade.cidadeName = faccionado.faccionadoCidadeAtual
 MERGE (bairro)<-[:`DO BAIRRO`]-(faccionado)-[:`DA FACÇÃO`]->(faccao)
+MERGE (cidade)<-[:`DA CIDADE`]-(faccionado)
 
 RETURN *
