@@ -54,6 +54,7 @@ WITH faccionado,faccao,bairro,cidade
 MATCH(order{faccaoNome:order.faccaoNome})
 MATCH(faccionado{faccionadoFaccao:faccionado.faccionadoFaccao})
 MATCH(faccionado{faccionadoBairroAtual:faccionado.faccionadoBairroAtual})
+MATCH(faccionado{faccionadoCidadeAtual:faccionado.faccionadoCidadeAtual})
 MATCH(faccao{faccaoName:faccao.faccaoName })
 MATCH(bairro{bairroName:bairro.bairroName })
 MATCH(cidade{cidadeName:cidade.cidadeName })
