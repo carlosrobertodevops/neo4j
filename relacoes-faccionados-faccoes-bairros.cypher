@@ -23,7 +23,7 @@ WITH faccionado
 LOAD CSV WITH HEADERS FROM "file:///faccao.csv" AS row
 MERGE (faccao:Faccao
     {
-        faccaoID:COALESCE(row.faccao,"SEM FACCAO"),
+        faccaoID: COALESCE(row.index, 0),
         faccaoName:COALESCE(row.faccao,"SEM FACCAO"),
         name:COALESCE(row.faccao,"SEM FACCAO")
     }
@@ -33,7 +33,7 @@ WITH faccionado, faccao
 LOAD CSV WITH HEADERS FROM "file:///bairro.csv" AS row
 MERGE (bairro:Bairro
     {
-        bairroID:COALESCE(row.bairro_atual,"SEM BAIRRO"),
+        bairroID:COALESCE(row.index,"0"),
         bairroName:COALESCE(row.bairro_atual,"SEM BAIRRO"),
         name:COALESCE(row.bairro_atual,"SEM BAIRRO")
     }
