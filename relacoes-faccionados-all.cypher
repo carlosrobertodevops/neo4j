@@ -19,7 +19,7 @@ MERGE(faccionado:Faccionado
 )
 
 WITH faccionado
-LOAD CSV WITH HEADERS FROM "file:///faccionados_neo4j_00.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:///faccao.csv" AS row
 MERGE (faccao:Faccao
     {
         faccaoName:COALESCE(row.faccao,"SEM FACCAO"),
@@ -28,7 +28,7 @@ MERGE (faccao:Faccao
 )
 
 WITH faccionado, faccao
-LOAD CSV WITH HEADERS FROM "file:///faccionados_neo4j_00.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:///bairro.csv" AS row
 MERGE (bairro:Bairro
     {
         bairroName:COALESCE(row.bairro_atual,"SEM BAIRRO"),
@@ -37,7 +37,7 @@ MERGE (bairro:Bairro
 )
 
 WITH faccionado, faccao, bairro
-LOAD CSV WITH HEADERS FROM "file:///faccionados_neo4j_00.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:///cidade.csv" AS row
 MERGE (cidade:Cidade
     {
         cidadeName:COALESCE(row.cidade_atual,"SEM CIDADE"),
