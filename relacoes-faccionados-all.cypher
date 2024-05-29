@@ -40,7 +40,6 @@ WITH faccionado, faccao, bairro
 LOAD CSV WITH HEADERS FROM "file:///faccionados_neo4j_00.csv" AS row
 MERGE (cidade:Cidade
     {
-        cidadeID:COALESCE(row.cidade_atual,"SEM CIDADE"),
         cidadeName:COALESCE(row.cidade_atual,"SEM CIDADE"),
         name:COALESCE(row.cidade_atual,"SEM CIDADE")
     }
@@ -55,6 +54,5 @@ MATCH(bairro{bairroName:bairro.bairroName})
 MATCH(cidade{cidadeName:cidade.cidadeName})
 WHERE faccao.faccaoName=faccionado.faccionadoFaccao AND bairro.bairroName=faccionado.faccionadoBairro AND cidade.cidadeName=faccionado.faccionadoCidade
 MERGE (bairro)<-[:`DO BAIRRO`]-(faccionado)-[:`DA FACÇÃO`]->(faccao)
-MERGE (faccionado)-[:`DA CIDADE`]->(cidade)
-
+MERGE (faccionado)<-[:`DA CIDADE`]-(cidade)
 RETURN *
