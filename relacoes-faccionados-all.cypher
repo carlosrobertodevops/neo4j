@@ -119,10 +119,10 @@ MATCH(faccionado{faccionadoFuncao:faccionado.faccionadoFuncao})
 MATCH(faccionado{faccionadoBairro:faccionado.faccionadoBairro})
 MATCH(faccionado{faccionadoCidade:faccionado.faccionadoCidade})
 
-MATCH(faccao{faccaoName:faccao.faccaoName })
-MATCH(funcao{funcaoName:faccao.funcaoName })
-MATCH(bairro{bairroName:bairro.bairroName })
-MATCH(cidade{cidadeName:cidade.cidadeName })
+MATCH(faccao{faccaoName:faccao.faccaoName})
+MATCH(funcao{funcaoName:faccao.funcaoName})
+MATCH(bairro{bairroName:bairro.bairroName})
+MATCH(cidade{cidadeName:cidade.cidadeName})
 
 WHERE faccao.faccaoName = faccionado.faccionadoFaccao AND funcao.funcaoName = faccionado.faccionadoFuncao AND bairro.bairroName = faccionado.faccionadoBairro AND cidade.cidadeName = faccionado.faccionadoCidade 
 
