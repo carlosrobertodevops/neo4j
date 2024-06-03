@@ -3,10 +3,6 @@
 // faccionados x faccoes (*)
 // faccionados x bairros (*)
 // fafaccionadosc x cidades (*)
-// faccionados x idade
-// faccionadosac x homicidas
-// faccionadosac x estupradores
-// faccionados x assaltantes
 
 LOAD CSV WITH HEADERS FROM "file:///faccionados_neo4j_00.csv" AS row
 MERGE(faccionado:Faccionado
